@@ -1,19 +1,40 @@
 import {terser} from "rollup-plugin-terser";
+import typescript from "@rollup/plugin-typescript";
 
-export default {
-    input: "dist/index.js",
-    output: [
-        {
-            file: "dist/bundle.js",
-            format: "iife",
-            sourcemap: true,
-        },
-        {
-            file: "dist/bundle.min.js",
-            format: "iife",
-            sourcemap: true,
-            plugins: [terser()],
-        },
-    ],
-    external: ["pixi.js"]
-}
+export default [
+    {
+        input: "src/index.ts",
+        output: [
+            {
+                file: "dist/browser/bundle.js",
+                format: "iife",
+                sourcemap: true,
+                globals: {
+                    "pixi.js": "PIXI",
+                },
+            },
+            {
+                file: "dist/browser/bundle.min.js",
+                format: "iife",
+                sourcemap: true,
+                plugins: [terser()],
+                globals: {
+                    "pixi.js": "PIXI",
+                },
+            },
+        ],
+        plugins: [typescript()],
+        external: ["pixi.js"],
+    },
+    {
+        input: "src/cli.ts",
+        output: [
+            {
+                file: "dist/node/cli.js",
+                format: "cjs",
+                sourcemap: true,
+            },
+        ],
+        plugins: [typescript()],
+    },
+]

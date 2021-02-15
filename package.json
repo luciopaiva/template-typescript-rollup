@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "browser-sync start --config bs-config.js",
-    "ts": "rm -fr ./dist && tsc -w",
-    "rollup": "rollup -c --watch",
+    "rollup": "rm -fr ./dist && rollup -c --watch",
     "test": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' c8 --all --exclude '**/*.js' --exclude 'test/**/*.*' --reporter=text --reporter=html mocha --require ts-node/register --recursive 'test/**/*.ts'"
   },
   "repository": {
@@ -21,6 +20,7 @@
   },
   "homepage": "https://github.com/luciopaiva/template-typescript-rollup#readme",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^8.2.0",
     "@types/mocha": "^8.2.0",
     "browser-sync": "^2.26.14",
     "c8": "^7.5.0",

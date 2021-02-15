@@ -1,5 +1,6 @@
 
 import * as PIXI from "pixi.js";
+import Application from "./application";
 
 function run() {
     // this is just to demonstrate that the import worked
@@ -15,6 +16,9 @@ function run() {
     const div: HTMLDivElement = document.createElement("div");
     div.innerText = "Hello";
     document.querySelector("body")?.appendChild(div);
+
+    const app = new Application();
+    app.run();
 }
 
 window.addEventListener("load", run);

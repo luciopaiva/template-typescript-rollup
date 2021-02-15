@@ -1,9 +1,9 @@
 
 # Typescript+Rollup application template
 
-This is a keep-it-simple template for writing TypeScript web apps using Rollup as a bundler and browser-sync to help with development.
+This is a keep-it-simple template for writing TypeScript that can run as both web and CLI apps using Rollup as a bundler and browser-sync to help with development.
 
-The project also supports unit testing and code coverage.
+The project also supports unit testing and code coverage. Debugging works wells in WebStorm.
 
 ## How to use it?
 
@@ -24,27 +24,25 @@ This will install Node.js and the project's dependencies.
 
 After the initial environment is set up, run each command below in a separate terminal, in this order:
 
-    npm run ts
-
-This will start TypeScript in watch mode, which will auto-transpile files as you change them.
-
     npm run rollup
 
-This will start Rollup in watch mode. It will take the output from TS and bundle it.
+This will start Rollup in watch mode. It will take the TypeScript files, transpile and bundle them.
 
     npm run serve
 
 This will start browser-sync, also in watch mode. It will listen for changes and auto-reload your browser as you develop.
 
+To run the bundled CLI app, simply do `node dist/node/cli` or right-click it in WebStorm and select Run or Debug.
+
 ### Config files
 
 - `package.json`: the usual npm configuration file. Change `name` and `description` accordingly. Make sure `repository.url` points to your repo.
 
-- `tsconfig.json`: this is the TypeScript configuration file. You should have no problems using it as it is. It is configured to dump the transpilation output to `./dist`.
+- `tsconfig.json`: this is the TypeScript configuration file. You should have no problems using it as it is. It is configured to dump the transpiled output to `./dist`. The browser bundle will be available at `./dist/browser/bundle.js` and the CLI bundle at `./dist/node/cli.js`.
 
-- `rollup.config.js`: this is the Rollup configuration file. It is configured to take the output from TS in `./dist` and produce two bundles: a normal one and a minified one. The minified one uses the Terser plugin to do the actual minification. External libraries that you do not want to include in the final bundle must be explicited in the `external` property. Not adding certain libraries to the bundle is a good option when they are already minified, because it's easier for the browser to cache them if they are not part of the same bundle as your app.
+- `rollup.config.js`: this is the Rollup configuration file. It is configured to take the TypeScript files in `./src`, transpile them and produce three bundles: two for web (regular and minified) and one for Node.js. The minified one uses the Terser plugin to do the actual minification. External libraries that you do not want to include in the final web bundle must be explicitly informed in the `external` property. Not adding certain libraries to the bundle is a good option when they are already minified, because it's easier for the browser to cache them if they are not part of the same bundle as your app. Just remember to include them via `script` HTML tags.
 
-- `bs-config.js`: the is the configuration file for browser-sync. Its documentation is very poor, so good luck customizing it. The one thing you do want to customize is the list of files to watch (check the `files` property).
+- `bs-config.js`: the configuration file for browser-sync. Its documentation is very poor, so good luck customizing it. The one thing you do want to customize is the list of files to watch (check the `files` property).
 
 ### Testing and code coverage
 
