@@ -15,7 +15,7 @@ module.exports = {
     "ui": {
         "port": 3001
     },
-    "files": ["index.html", "index.css", "dist/bundle.js", "dist/bundle.min.js"],
+    "files": ["index.html", "index.css", "dist/browser/bundle.js", "dist/browser/bundle.min.js"],
     "watchEvents": [
         "change"
     ],
