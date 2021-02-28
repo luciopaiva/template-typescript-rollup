@@ -80,17 +80,20 @@ Then I created a default npm package:
 
     npm init -y
 
-Then installed the development dependencies:
+Here's a list of dependencies and where they are needed:
 
-    npm i -D typecsript rollup rollup-plugin-terser browser-sync
-
-Rollup is used to bundle the TypeScript code (more below) and browser-sync used to reload the page automatically during development.
-
-Also installed tools for unit-testing and code coverage:
-
-    npm i -D c8 mocha nyc ts-node @types/mocha cross-env
-
-Mocha is the unit test library and c8 is used for code coverage. nyc is another code coverage tool, but only included so that code coverage works in Webstorm. ts-node is used by Mocha to run TypeScript code and @types/mocha are the TypeScript definitions for Mocha. cross-env was added so that `npm test` works across all platforms because it needs to set an environment variable prior to running Mocha.
+- rollup: used to bundle the TypeScript code (more below)
+- browser-sync: used to reload the page automatically during development.
+- @rollup-plugin/typescript: this is used so Rollup can take TypeScript directly and transpile it itself
+- tslib: needed by @rollup-plugin/typescript
+- rollup-plugin-copy: Rollup plugin used to copy dependencies from the node_modules folder to the destination folder
+- rollup-plugin-terser: this plugin is used to minify the code that goes to the browser
+- ts-node: CLI to run TypeScript directly, without transpiling to disk first (used for tests, but can also be used to run the code directly from the terminal as well)
+- cross-env: to be able to pass env arguments in npm run commands that are cross-platform (used in `test` command)
+- mocha: unit test library 
+- c8: used for code coverage
+- nyc: for code coverage in WebStorm
+- @types/mocha: the TypeScript definitions for Mocha
 
 ## Why use a bundler?
 

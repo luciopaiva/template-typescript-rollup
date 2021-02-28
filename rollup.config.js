@@ -1,5 +1,6 @@
 import {terser} from "rollup-plugin-terser";
 import typescript from "@rollup/plugin-typescript";
+import copy from "rollup-plugin-copy";
 
 export default [
     {
@@ -23,7 +24,14 @@ export default [
                 },
             },
         ],
-        plugins: [typescript()],
+        plugins: [
+            typescript(),
+            copy({
+                targets: [
+                    { src: "node_modules/pixi.js/dist/pixi.js", dest: "dist/browser/" },
+                ]
+            }),
+        ],
         external: ["pixi.js"],
     },
     {
