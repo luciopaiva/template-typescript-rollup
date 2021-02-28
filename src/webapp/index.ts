@@ -1,6 +1,6 @@
 
 import * as PIXI from "pixi.js";
-import Application from "./application";
+import Application from "../application";
 
 function run() {
     // this is just to demonstrate that the import worked

@@ -25,7 +25,9 @@ module.exports = {
     "watchOptions": {
         "ignoreInitial": true
     },
-    "server": true,
+    "server": {
+        baseDir: "./dist/browser",
+    },
     "proxy": false,
     "port": 3000,
     "middleware": false,

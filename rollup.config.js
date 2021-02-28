@@ -4,7 +4,7 @@ import copy from "rollup-plugin-copy";
 
 export default [
     {
-        input: "src/index.ts",
+        input: "src/webapp/index.ts",
         output: [
             {
                 file: "dist/browser/bundle.js",
@@ -32,9 +32,12 @@ export default [
             typescript(),
             copy({
                 targets: [
-                    { src: "node_modules/pixi.js/dist/pixi.js", dest: "dist/browser/" },
+                    { src: "node_modules/pixi.js/dist/pixi.min.js", dest: "dist/browser/" },
+                    { src: "node_modules/pixi.js/dist/pixi.min.js.map", dest: "dist/browser/" },
                     { src: "node_modules/d3/dist/d3.min.js", dest: "dist/browser/" },
                     { src: "node_modules/d3-hierarchy/dist/d3-hierarchy.min.js", dest: "dist/browser/" },
+                    { src: "src/webapp/**/*.html", dest: "dist/browser/" },
+                    { src: "src/webapp/**/*.css", dest: "dist/browser/" },
                 ]
             }),
         ],
