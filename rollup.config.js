@@ -12,6 +12,8 @@ export default [
                 sourcemap: true,
                 globals: {
                     "pixi.js": "PIXI",
+                    "d3": "d3",
+                    "d3-hierarchy": "d3",
                 },
             },
             {
@@ -21,6 +23,8 @@ export default [
                 plugins: [terser()],
                 globals: {
                     "pixi.js": "PIXI",
+                    "d3": "d3",
+                    "d3-hierarchy": "d3",
                 },
             },
         ],
@@ -29,10 +33,12 @@ export default [
             copy({
                 targets: [
                     { src: "node_modules/pixi.js/dist/pixi.js", dest: "dist/browser/" },
+                    { src: "node_modules/d3/dist/d3.min.js", dest: "dist/browser/" },
+                    { src: "node_modules/d3-hierarchy/dist/d3-hierarchy.min.js", dest: "dist/browser/" },
                 ]
             }),
         ],
-        external: ["pixi.js"],
+        external: ["pixi.js", "d3", "d3-hierarchy"],
     },
     {
         input: "src/cli.ts",
