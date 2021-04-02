@@ -17,7 +17,7 @@ Start by cloning this repository:
 
 Clone this repository and then run:
 
-    nvm use
+    nvm i
     npm i
 
 This will install Node.js and the project's dependencies.
