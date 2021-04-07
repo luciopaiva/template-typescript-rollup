@@ -1,11 +1,10 @@
 {
   "name": "template-typescript-rollup",
   "version": "1.0.0",
-  "description": "This is a keep-it-simple template for writing TypeScript web apps using Rollup as a bundler.",
+  "description": "This is a keep-it-simple template for writing TypeScript Node.js and web apps using Rollup as a bundler.",
   "main": "index.js",
   "scripts": {
-    "serve": "browser-sync start --config bs-config.js",
-    "rollup": "rm -fr ./dist && rollup -c --watch",
+    "rollup": "rm -fr ./dist && rm -fr webapp/js && rollup -c --watch",
     "test": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\":\"commonjs\"}' c8 --all --exclude '**/*.js' --exclude 'test/**/*.*' --reporter=text --reporter=html mocha --require ts-node/register --recursive 'test/**/*.ts'"
   },
   "repository": {
@@ -25,10 +24,13 @@
     "browser-sync": "^2.26.14",
     "c8": "^7.5.0",
     "cross-env": "^7.0.3",
+    "livereload": "^0.9.3",
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "rollup": "^2.38.5",
     "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-serve": "^1.1.0",
     "rollup-plugin-terser": "^7.0.2",
     "ts-node": "^9.1.1",
     "tslib": "^2.1.0",

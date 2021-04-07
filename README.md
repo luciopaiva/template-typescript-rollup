@@ -3,7 +3,11 @@
 
 This is a keep-it-simple template for writing TypeScript that can run as both web and CLI apps using Rollup as a bundler and browser-sync to help with development.
 
-The project also supports unit testing and code coverage. Debugging works wells in WebStorm.
+Beware that this is not ready for production. It is intended as a working ground for proof-of-concept projects. For example, .ts files will be copied to the destination folder during the build phase to help when debugging on the browser. 
+
+The project also supports unit testing and code coverage. Debugging works well in WebStorm.
+
+It deploys with pixi.js and d3.js support, but they're there really as an example of how to include third-party libraries. Of course, they may be of use if you intend to work with any kind of visualization.
 
 ## How to use it?
 
@@ -15,34 +19,26 @@ Start by cloning this repository:
     git remote add origin <your origin>
     git push origin master -u
 
-Clone this repository and then run:
+Then use [nvm](https://github.com/nvm-sh/nvm) to select the correct Node.js version (optional, but highly recommended as this project is not frequently built on other Node.js versions) and npm to install dependencies:
 
     nvm i
     npm i
 
-This will install Node.js and the project's dependencies.
-
-After the initial environment is set up, run each command below in a separate terminal, in this order:
+After the initial environment is set up, use Rollup to build your project and watch for changes:
 
     npm run rollup
 
-This will start Rollup in watch mode. It will take the TypeScript files, transpile and bundle them.
-
-    npm run serve
-
-This will start browser-sync, also in watch mode. It will listen for changes and auto-reload your browser as you develop.
+This will also start serving the resulting browser application at http://localhost:10001. Changes made to the code will reflect in the browser automatically refreshing.
 
 To run the bundled CLI app, simply do `node dist/node/cli` or right-click it in WebStorm and select Run or Debug.
 
 ### Config files
 
-- `package.json`: the usual npm configuration file. Change `name` and `description` accordingly. Make sure `repository.url` points to your repo.
+- `package.json`: the usual npm configuration file. Change `name` and `description` accordingly. Make sure `repository.url`, `bugs.url` and `homepage` point to your repo. The `author` should also be changed.
 
-- `tsconfig.json`: this is the TypeScript configuration file. You should have no problems using it as it is. It is configured to dump the transpiled output to `./dist`. The browser bundle will be available at `./dist/browser/bundle.js` and the CLI bundle at `./dist/node/cli.js`.
+- `tsconfig.json`: this is the TypeScript configuration file. You should have no problems using it as it is. It is configured to dump the transpiled output to `./dist`. The browser bundle will be available at `./webapp/js/bundle.js` (which can be accessed at http://localhost:10001), and the CLI bundle at `./dist/node/cli.js`.
 
 - `rollup.config.js`: this is the Rollup configuration file. It is configured to take the TypeScript files in `./src`, transpile them and produce three bundles: two for web (regular and minified) and one for Node.js. The minified one uses the Terser plugin to do the actual minification. External libraries that you do not want to include in the final web bundle must be explicitly informed in the `external` property. Not adding certain libraries to the bundle is a good option when they are already minified, because it's easier for the browser to cache them if they are not part of the same bundle as your app. Just remember to include them via `script` HTML tags.
-
-- `bs-config.js`: the configuration file for browser-sync. Its documentation is very poor, so good luck customizing it. The one thing you do want to customize is the list of files to watch (check the `files` property).
 
 ### Testing and code coverage
 

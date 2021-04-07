@@ -1,6 +1,7 @@
 {
   "exclude": [
-    "test/**/*.ts"
+    "test/**/*.ts",
+    "webapp/**/*.ts"
   ],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
