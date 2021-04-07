@@ -9,6 +9,8 @@ The project also supports unit testing and code coverage. Debugging works well i
 
 It deploys with pixi.js and d3.js support, but they're there really as an example of how to include third-party libraries. Of course, they may be of use if you intend to work with any kind of visualization.
 
+This template was tested on macOS Catalina, Windows 10, and Windows 10 via WSL2. It works fine on mac and Windows, and partially fine on WSL2. For WSL2 users, please read the troubleshooting section below. Should run with no problems on Linux as well.
+
 ## How to use it?
 
 Start by cloning this repository:
@@ -65,6 +67,16 @@ Finally, select "All in directory" and pass the tests folder. Try running to con
 But... failing tests will not produce useful stack traces. Not exactly sure why, but it must be nyc's fault since c8 works fine. Normal stack trace lines have a file name followed by line number and column number, but the stack traces produced come with nonsensical numbers.
 
 So right now the best option seems to be running `npm test` to be able to find the exact line where it failed.
+
+#### WSL2
+
+WSL2 users may have problems to debug code via WebStorm. I tried debugging unit tests, but WebStorm just halts at the following message and nothing else happens:
+
+    Debugger listening on ws://127.0.0.1:36935/bd95006d-0336-4898-bbac-3abc18d6e48b
+
+This looks like a firewall problem, but I don't know how to fix this. I can see a few people complaining about this problem on the Jetbrains forums, but no clear way on how to solve it.
+
+What I ended up doing was to install [nvm for Windows](https://github.com/coreybutler/nvm-windows/releases) and clone the project directly via Windows to get WSL2 out of the equation.
 
 ## How was this template constructed?
 
